@@ -26,6 +26,7 @@ from larpian.config import load_config  # noqa: E402
 SELECT_FIELDS = {"景别", "运镜"}
 
 TABLE_FIELDS = [
+    {"name": "视频", "type": "text"},
     {"name": "镜号", "type": "text"},
     {"name": "起始", "type": "text"},
     {"name": "结束", "type": "text"},

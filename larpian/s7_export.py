@@ -188,6 +188,7 @@ def to_feishu_payload(data: dict, meta: dict, out_path: Path) -> Path:
     records = []
     for r in data["rows"]:
         fields = {
+            "视频": meta.get("title") or "",
             "镜号": r["shot_id"],
             "起始": r["start_tc"],
             "结束": r["end_tc"],

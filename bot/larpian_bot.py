@@ -266,8 +266,8 @@ class Bot:
         except Exception:  # noqa: BLE001
             pass
 
-        # 推飞书多维表格（每个视频新建一张表）
-        pf = subprocess.run([sys.executable, str(PUSH), str(proj), "--new-table"],
+        # 推飞书多维表格（共用 config 里固定的一张表，持续追加）
+        pf = subprocess.run([sys.executable, str(PUSH), str(proj)],
                             capture_output=True, text=True, cwd=str(ROOT),
                             env=self.env, timeout=900)
         m = re.search(r"(https?://\S*feishu\.cn/base/\S+)", pf.stdout or "")
