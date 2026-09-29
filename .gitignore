@@ -3,6 +3,10 @@ config.yaml
 output/
 .workbuddy/
 .env
+bot/.env
+bot/inbox/
+bot/state.json
+bot/*.log
 *.srt.orig
 
 # 系统噪音

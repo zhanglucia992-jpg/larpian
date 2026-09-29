@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.larpian.bot</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/zhangyingying10/.workbuddy/binaries/python/envs/default/bin/python</string>
+        <string>/Users/zhangyingying10/WorkBuddy/拉片工具/bot/larpian_bot.py</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/Users/zhangyingying10/WorkBuddy/拉片工具</string>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <dict>
+        <key>SuccessfulExit</key>
+        <false/>
+    </dict>
+    <key>ThrottleInterval</key>
+    <integer>30</integer>
+    <key>StandardOutPath</key>
+    <string>/Users/zhangyingying10/WorkBuddy/拉片工具/bot/bot.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/zhangyingying10/WorkBuddy/拉片工具/bot/bot.err.log</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/Users/zhangyingying10/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    </dict>
+</dict>
+</plist>

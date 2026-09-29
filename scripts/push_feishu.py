@@ -58,14 +58,15 @@ def cli(args: list[str]) -> dict:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("project_dir")
-    ap.add_argument("--base", dest="app_token")
+    ap.add_argument("--base", dest="app_token", help="复用已有多维表格")
     ap.add_argument("--table", dest="table_id")
+    ap.add_argument("--new-table", action="store_true", help="强制新建一张表（不复用 config 里的）")
     ap.add_argument("--config", default=None)
     args = ap.parse_args()
 
     cfg = load_config(args.config)
-    app_token = args.app_token or cfg["feishu"].get("app_token")
-    table_id = args.table_id or cfg["feishu"].get("table_id")
+    app_token = None if args.new_table else (args.app_token or cfg["feishu"].get("app_token"))
+    table_id = None if args.new_table else (args.table_id or cfg["feishu"].get("table_id"))
 
     proj = Path(args.project_dir).expanduser().resolve()
     payload_path = proj / "feishu_payload.json"
