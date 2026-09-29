@@ -1,0 +1,63 @@
+# ============================================================
+# 拉片工具配置模板
+# 复制为 config.yaml 后按需修改：cp config.example.yaml config.yaml
+# config.yaml 不入库（含个人 token），勿提交真实凭据。
+# ============================================================
+
+paths:
+  # 可执行文件位置，填 "ffmpeg" 表示从 PATH 找
+  ffmpeg: "ffmpeg"
+  ffprobe: "ffprobe"
+  yt_dlp: "yt-dlp"
+  # 每个视频的产物目录根
+  work_dir: "output"
+
+# ---------------------------------------------------------------- 切镜
+scene:
+  detector: "content"        # content（推荐）| adaptive | hash
+  threshold: 27.0            # 内容检测阈值：越小越敏感、镜头切得越碎。22~32 常用
+  adaptive_threshold: 3.0    # adaptive 检测器专用
+  min_shot_sec: 0.6          # 短于此长度的镜头并入前一个镜头
+  merge_gap_sec: 0.15
+
+# ---------------------------------------------------------------- 抽帧
+keyframe:
+  images_per_shot: 2         # 每镜抽几张：1（省 token）| 2（推荐，能看出镜头内运动）
+  positions: [0.12, 0.62]    # 抽帧相对位置，避开开场转场和结尾黑场
+  width: 720                 # 输出宽度像素，越大越清晰也越费 token
+  quality: 3                 # jpg 质量，2 最高 / 31 最低
+
+# ---------------------------------------------------------------- 字幕
+subtitle:
+  enabled: true
+  # 依次尝试的来源顺序
+  prefer: ["local", "embedded", "platform", "whisper"]
+  whisper_model: "small"     # whisper 兜底转写用的模型
+  whisper_lang: "zh"
+
+# ---------------------------------------------------------------- 多模态分析
+vision:
+  # manual：生成分析任务单，由具备视觉能力的 Agent 逐帧读图分析（质量最高，零成本，推荐）
+  # api   ：调用 OpenAI 兼容的多模态接口，全自动
+  provider: "manual"
+  api:
+    base_url: "https://api.openai.com/v1"
+    api_key_env: "VISION_API_KEY"   # 从环境变量读 key，别写在这
+    model: "gpt-4o"
+    max_tokens: 1200
+    temperature: 0.2
+    concurrency: 4
+    timeout: 120
+
+# ---------------------------------------------------------------- 飞书多维表格
+feishu:
+  enabled: false
+  # 留空时 push_feishu.py 会自动新建「拉片表 · <视频标题>」并打印链接
+  app_token: ""              # 多维表格 URL 里 /base/ 后面那串
+  table_id: ""               # 数据表 id，形如 tblXXXXXX
+
+# ---------------------------------------------------------------- 导出
+export:
+  csv: true
+  markdown: true
+  xlsx: false

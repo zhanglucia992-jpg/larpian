@@ -1,0 +1,13 @@
+# 个人产物与凭据，不入库
+config.yaml
+output/
+.workbuddy/
+.env
+*.srt.orig
+
+# 系统噪音
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+venv/
